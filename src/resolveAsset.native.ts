@@ -1,5 +1,4 @@
 import { Asset } from 'expo-asset';
-import { resolveAsync } from 'expo-asset-utils';
 
 export default async function resolveAsset(
   fileReference: any
@@ -7,11 +6,11 @@ export default async function resolveAsset(
   const urls: Asset[] = [];
   if (Array.isArray(fileReference)) {
     for (const file of fileReference) {
-      const asset = await resolveAsync(file);
+      const asset = await Asset.loadAsync(file);
       urls.push(asset);
     }
   } else {
-    const asset = await resolveAsync(fileReference);
+    const asset = await Asset.loadAsync(fileReference);
     urls.push(asset);
   }
   return urls;

@@ -1,4 +1,4 @@
-import { resolveAsync } from 'expo-asset-utils';
+import { Asset } from 'expo-asset';
 import { Platform } from 'react-native';
 import { FileLoader } from 'three';
 import { ColladaLoader } from 'three/examples/jsm/loaders/ColladaLoader';
@@ -11,7 +11,7 @@ async function loadFileAsync({ asset, funcName }): Promise<string | null> {
   if (!asset) {
     throw new Error(`ExpoTHREE.${funcName}: Cannot parse a null asset`);
   }
-  return (await resolveAsync(asset)).localUri ?? null;
+  return (await Asset.loadAsync(asset)).localUri ?? null;
 }
 
 export async function loadMtlAsync({ asset, onAssetRequested }): Promise<any> {
